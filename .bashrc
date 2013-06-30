@@ -1,3 +1,23 @@
+# current directory
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+
+# additional scripts
+
+# Usage: gg <options>
+# Lists each branch and its commits ahead of trunk.
+if [ -f $DIR/.git.bash ]; then
+  . $DIR/.git.bash
+fi
+
+
 # git enhancements
 
 function parse_git_branch {
