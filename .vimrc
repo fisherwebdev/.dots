@@ -3,7 +3,7 @@ call pathogen#infect()
 syntax enable
 
 set autoindent
-set backspace=indent,eol,start
+set backspace=indent,eol,start  "TODO or 2?
 set dir=~/.vim/tmp
 set encoding=utf-8
 set expandtab
@@ -13,19 +13,33 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
+set showmode
+set nocompatible
+set noerrorbells
 set nojoinspaces
+set nolist
 set number
 set ruler
+set scrolloff=5
+set scrolljump=5
+set sidescroll=10
 set shiftwidth=2
 set showcmd
+set showmatch
 set smartcase
 set smarttab
+set softtabstop=2
 set tabstop=2
+set tags=tags;/ "TODO: figure this out
 set textwidth=80
+set undolevels=1000
+set viminfo='50,"50           " '=marks for x files, "=registers for x files
 
 filetype on
 filetype indent plugin on
 
+" TODO: experiment with the first versus the other two for literal tabs 
+"match Error '\t'
 syn match tab display "\t"
 hi link tab Error
 
@@ -64,3 +78,14 @@ endfun
 autocmd FileType c,cabal,cpp,haskell,javascript,php,python,readme,text
   \ autocmd BufWritePre <buffer>
   \ :call <SID>StripTrailingWhitespaces()
+
+" make split windows easier to navigate
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-h> <C-w>h
+"map <C-l> <C-w>l
+"map <C-m> <C-w>_
+
+" bind "gb" to "git blame" for visual and normal mode.
+:vmap gb :<C-U>!git blame % -L<C-R>=line("'<") <CR>,<C-R>=line("'>") <CR><CR>
+:nmap gb :!git blame %<CR>
