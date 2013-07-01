@@ -30,7 +30,7 @@ function proml {
   local       GREEN="\[\033[0;32m\]"
   local LIGHT_GREEN="\[\033[1;32m\]"
   local       WHITE="\[\033[1;37m\]"
-  local  LIGHT_GRAY="\[\033[0;37m\]"
+  local  LIGHT_GRAY="\[\033[0;39m\]" # modded.  this was white in my terminal.
   case $TERM in
     xterm*)
     TITLEBAR='\[\033]0;\u@\h:\w\007\]'
@@ -39,9 +39,7 @@ function proml {
     TITLEBAR=""
     ;;
   esac 
-  PS1="${TITLEBAR}\
-  $GREEN[$GREEN\u@\h:\w$LIGHT_GRAY\$(parse_git_branch)$GREEN]\
-  $GREEN\$ "
+  PS1="${TITLEBAR}$GREEN[$GREEN\u@\h:\w$LIGHT_GRAY\$(parse_git_branch)$GREEN]$GREEN \$ "
   PS2='> '
   PS4='+ '
 }
