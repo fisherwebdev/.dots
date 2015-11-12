@@ -1,6 +1,12 @@
 call pathogen#infect()
 
-syntax enable
+syntax on
+filetype plugin indent on
+set t_Co=256
+set background=dark
+color pablo
+
+set omnifunc=syntaxcomplete#Complete
 
 set autoindent
 set backspace=indent,eol,start  "TODO or 2?
@@ -18,6 +24,7 @@ set nocompatible
 set noerrorbells
 set nojoinspaces
 set nolist
+set nrformats=
 set number
 set ruler
 set scrolloff=5
@@ -35,16 +42,10 @@ set textwidth=80
 set undolevels=1000
 set viminfo='50,"50           " '=marks for x files, "=registers for x files
 
-filetype on
-filetype indent plugin on
-
 " TODO: experiment with the first versus the other two for literal tabs 
 "match Error '\t'
 syn match tab display "\t"
 hi link tab Error
-
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
 
 " jj gets back to command mode
 map! jj <Esc>
@@ -66,6 +67,9 @@ map <Leader>d o<esc>
 
 " Let syntastic know about my jsl.conf
 let g:syntastic_javascript_jsl_conf = "-conf `~/.jsl.conf"
+
+" JSX highlighting in JS via vim-jsx plugin
+let g:jsx_ext_required = 0
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")

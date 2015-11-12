@@ -1,0 +1,52 @@
+# React Snippets
+
+# component
+snippet react
+	var ${1:MyComponent} = React.createClass({
+
+	  propTypes: {
+	  },
+
+	  render: function() {
+		return (
+		  ${3:<div>test</div>}
+		);
+	  }
+
+	});
+
+# CommonJS
+snippet reactr
+	var React = require('react');
+
+snippet reactp
+	var ReactPropTypes = React.PropTypes;
+
+snippet cjsexport
+	var module.exports = ${1};
+
+# Complete CommonJS component
+snippet reactcjs
+	/**
+	 * @providesModule ${1:MyComponent}.react
+	 */
+
+	var React = require('react');
+
+	var ReactPropTypes = React.PropTypes;
+	
+	var $1 = React.createClass({
+
+	  propTypes: {
+		${2:prop}: ReactPropTypes.${3:string}
+	  },
+
+	  render: function() {
+		return (
+		  ${4:<div>test</div>}
+		);
+	  }
+
+	});
+
+	var module.exports = $1;
